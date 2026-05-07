@@ -3,19 +3,32 @@ export default function ModeSelect({ onSelect, onBack }) {
   return (
     <div className="mode-page">
       <div className="mode-inner">
+
+        {/* Back navigation */}
         <button className="back-btn" onClick={onBack}>
-          <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-            <path d="M16 10H4M9 5l-5 5 5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
+            <path
+              d="M16 10H4M9 5l-5 5 5 5"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
           Back
         </button>
 
+        {/* Page header */}
         <div className="mode-header">
-          <h2 className="mode-title">How would you like<br />to take this test?</h2>
-          <p className="mode-sub">Choose your preferred feedback style. You can always switch next session.</p>
+          <h2 className="mode-title">Choose a test mode</h2>
+          <p className="mode-sub">
+            Select how you want to receive feedback. You can switch modes any time before starting.
+          </p>
         </div>
 
+        {/* Mode option cards — grouped in a bordered container */}
         <div className="mode-cards">
+
           {/* Immediate feedback */}
           <button
             className="mode-card"
@@ -23,15 +36,15 @@ export default function ModeSelect({ onSelect, onBack }) {
           >
             <div className="mode-icon mode-icon--immediate">⚡</div>
             <div className="mode-body">
-              <h3>See Answers as I Go</h3>
+              <h3>Immediate Feedback</h3>
               <p>
-                After each question you'll instantly see whether your answer was correct
-                or wrong — with the correct answer highlighted.
+                See whether your answer is correct after each question.
+                The correct answer is highlighted before you move on.
               </p>
               <ul className="mode-bullets">
-                <li>✓ Learn from mistakes immediately</li>
-                <li>✓ Great for study sessions</li>
-                <li>✓ Detailed per-question feedback</li>
+                <li>— Learn from mistakes immediately</li>
+                <li>— Best for active study sessions</li>
+                <li>— Per-question explanation</li>
               </ul>
             </div>
             <div className="mode-arrow">→</div>
@@ -44,19 +57,20 @@ export default function ModeSelect({ onSelect, onBack }) {
           >
             <div className="mode-icon mode-icon--end">📋</div>
             <div className="mode-body">
-              <h3>Show Results After Test</h3>
+              <h3>Results at End</h3>
               <p>
-                Answer all 50 questions first, then see your full score and a
-                breakdown of correct and incorrect answers at the end.
+                Answer all 50 questions without interruption, then review
+                your full score and a breakdown at the end.
               </p>
               <ul className="mode-bullets">
-                <li>✓ Simulates real exam conditions</li>
-                <li>✓ Tests time management</li>
-                <li>✓ Full review at the end</li>
+                <li>— Simulates real exam conditions</li>
+                <li>— Tests time management under pressure</li>
+                <li>— Full annotated review after submission</li>
               </ul>
             </div>
             <div className="mode-arrow">→</div>
           </button>
+
         </div>
       </div>
     </div>

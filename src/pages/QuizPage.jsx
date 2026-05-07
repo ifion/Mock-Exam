@@ -1,36 +1,81 @@
 // QuizPage.jsx
-import { useState, useEffect, useCallback } from 'react'
-import { getCorrectIndex, isCorrect, QUESTIONS_PER_SESSION } from '../utils/quizLogic.js'
+import { useState, useEffect, useCallback, useRef } from 'react'
+import { getCorrectIndex, isCorrect } from '../utils/quizLogic.js'
 import { saveCurrentSession } from '../utils/storage.js'
 
 const OPTION_LABELS = ['A', 'B', 'C', 'D']
+const TIMER_SECONDS = 20 * 60  // 20 minutes
+
+/** Format seconds as MM:SS */
+function formatTime(secs) {
+  const m = Math.floor(secs / 60).toString().padStart(2, '0')
+  const s = (secs % 60).toString().padStart(2, '0')
+  return `${m}:${s}`
+}
+
+/** Derive timer urgency class from remaining seconds */
+function timerClass(secs) {
+  if (secs <= 60)  return 'quiz-timer quiz-timer--urgent'
+  if (secs <= 300) return 'quiz-timer quiz-timer--warn'
+  return 'quiz-timer'
+}
 
 export default function QuizPage({ questions, mode, onFinish, onQuit }) {
-  const [currentIdx, setCurrentIdx] = useState(0)
-  const [userAnswers, setUserAnswers] = useState({}) // { [questionId]: chosenIndex | null }
-  const [revealed, setRevealed] = useState(false)   // for immediate mode: show answer state
-  const [animating, setAnimating] = useState(false)
+  const [currentIdx, setCurrentIdx]   = useState(0)
+  const [userAnswers, setUserAnswers] = useState({})
+  const [revealed, setRevealed]       = useState(false)
+  const [animating, setAnimating]     = useState(false)
+  const [timeLeft, setTimeLeft]       = useState(TIMER_SECONDS)
+  const [timeExpired, setTimeExpired] = useState(false)
 
-  const question = questions[currentIdx]
-  const totalQ = questions.length
-  const progressPct = ((currentIdx + 1) / totalQ) * 100
-  const chosenIndex = userAnswers[question?.id]
-  const hasChosen = chosenIndex !== undefined
+  const finishRef = useRef(onFinish)
+  finishRef.current = onFinish   // Keep ref current without resetting timer
+
+  const question     = questions[currentIdx]
+  const totalQ       = questions.length
+  const progressPct  = ((currentIdx + 1) / totalQ) * 100
+  const chosenIndex  = userAnswers[question?.id]
+  const hasChosen    = chosenIndex !== undefined
   const correctIndex = getCorrectIndex(question?.id)
-  const isImmediate = mode === 'immediate'
+  const isImmediate  = mode === 'immediate'
 
-  // Persist current session state in storage
+  // ── Countdown timer ────────────────────────────────────────────
+  useEffect(() => {
+    if (timeExpired) return
+
+    const id = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev <= 1) {
+          clearInterval(id)
+          setTimeExpired(true)
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000)
+
+    return () => clearInterval(id)
+  }, [timeExpired])
+
+  // Auto-submit when time expires (tiny delay lets state settle)
+  useEffect(() => {
+    if (!timeExpired) return
+    const id = setTimeout(() => finishRef.current({ ...userAnswers }), 400)
+    return () => clearTimeout(id)
+  }, [timeExpired, userAnswers])
+
+  // ── Persist session ────────────────────────────────────────────
   useEffect(() => {
     saveCurrentSession({ currentIdx, userAnswers, mode })
   }, [currentIdx, userAnswers, mode])
 
+  // ── Interaction handlers ───────────────────────────────────────
   const handleOptionClick = useCallback((optIndex) => {
     if (!question) return
-    // In immediate mode, lock answer after selection
     if (isImmediate && revealed) return
-    // In end mode, allow changing answer until moving forward
+
+    // End mode: tap same option to deselect
     if (!isImmediate && hasChosen && optIndex === chosenIndex) {
-      // deselect toggle
       setUserAnswers(prev => {
         const copy = { ...prev }
         delete copy[question.id]
@@ -40,18 +85,13 @@ export default function QuizPage({ questions, mode, onFinish, onQuit }) {
     }
 
     setUserAnswers(prev => ({ ...prev, [question.id]: optIndex }))
-
-    if (isImmediate) {
-      setRevealed(true)
-    }
+    if (isImmediate) setRevealed(true)
   }, [question, isImmediate, revealed, hasChosen, chosenIndex])
 
   const handleNext = useCallback(() => {
     if (animating) return
     if (currentIdx + 1 >= totalQ) {
-      // Finish quiz
-      const finalAnswers = { ...userAnswers }
-      onFinish(finalAnswers)
+      onFinish({ ...userAnswers })
       return
     }
     setAnimating(true)
@@ -59,7 +99,7 @@ export default function QuizPage({ questions, mode, onFinish, onQuit }) {
       setCurrentIdx(i => i + 1)
       setRevealed(false)
       setAnimating(false)
-    }, 220)
+    }, 150)
   }, [animating, currentIdx, totalQ, userAnswers, onFinish])
 
   const handlePrev = useCallback(() => {
@@ -67,9 +107,11 @@ export default function QuizPage({ questions, mode, onFinish, onQuit }) {
     setAnimating(true)
     setTimeout(() => {
       setCurrentIdx(i => i - 1)
-      setRevealed(isImmediate && userAnswers[questions[currentIdx - 1]?.id] !== undefined)
+      setRevealed(
+        isImmediate && userAnswers[questions[currentIdx - 1]?.id] !== undefined
+      )
       setAnimating(false)
-    }, 220)
+    }, 150)
   }, [animating, currentIdx, isImmediate, userAnswers, questions])
 
   function getOptionState(optIndex) {
@@ -79,25 +121,57 @@ export default function QuizPage({ questions, mode, onFinish, onQuit }) {
       if (optIndex === chosenIndex && chosenIndex !== correctIndex) return 'wrong'
       return 'dim'
     }
-    // End mode — just show selected
     if (optIndex === chosenIndex) return 'selected'
     return 'idle'
   }
 
-  const canProceed = isImmediate
-    ? (hasChosen && revealed)
-    : true // in end mode, can always navigate (skip allowed)
-
-  const answeredCount = Object.keys(userAnswers).length
+  const answeredCount  = Object.keys(userAnswers).length
   const isLastQuestion = currentIdx + 1 >= totalQ
 
+  // ── Time-expired overlay (auto-dismisses via effect above) ─────
+  if (timeExpired) {
+    return (
+      <div className="quiz-page">
+        <div className="timeup-overlay">
+          <div className="timeup-modal">
+            <div className="timeup-label">Time Expired</div>
+            <div className="timeup-title">20 minutes is up</div>
+            <p className="timeup-body">
+              Your test has been submitted automatically with{' '}
+              {answeredCount} of {totalQ} questions answered.
+              Calculating your results…
+            </p>
+            <div className="timeup-actions">
+              <span
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 'var(--text-xs)',
+                  color: 'var(--text-muted)',
+                }}
+              >
+                Submitting…
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // ── Render ─────────────────────────────────────────────────────
   return (
     <div className="quiz-page">
-      {/* Header */}
+
+      {/* ── Header ─────────────────────────────────────────────── */}
       <header className="quiz-header">
-        <button className="quit-btn" onClick={() => {
-          if (confirm('Quit this test? Your progress will be lost.')) onQuit()
-        }}>
+        <button
+          className="quit-btn"
+          onClick={() => {
+            if (confirm('Quit this test? Your progress will not be saved.')) {
+              onQuit()
+            }
+          }}
+        >
           ✕ Quit
         </button>
 
@@ -105,25 +179,32 @@ export default function QuizPage({ questions, mode, onFinish, onQuit }) {
           <div className="quiz-progress-fill" style={{ width: `${progressPct}%` }} />
         </div>
 
-        <div className="quiz-counter">{currentIdx + 1} / {totalQ}</div>
+        <div className="quiz-counter">{currentIdx + 1}/{totalQ}</div>
+
+        {/* Timer */}
+        <div className={timerClass(timeLeft)}>
+          ⏱ {formatTime(timeLeft)}
+        </div>
       </header>
 
-      {/* Mode badge */}
+      {/* ── Mode + answered strip ───────────────────────────────── */}
       <div className="mode-badge-strip">
         <span className={`mode-badge ${isImmediate ? 'mode-badge--imm' : 'mode-badge--end'}`}>
-          {isImmediate ? '⚡ Immediate Feedback' : '📋 End Results Mode'}
+          {isImmediate ? '⚡ Immediate' : '📋 End Results'}
         </span>
         <span className="answered-badge">{answeredCount} answered</span>
       </div>
 
-      {/* Question card */}
+      {/* ── Main content ───────────────────────────────────────── */}
       <main className={`quiz-main ${animating ? 'fade-out' : 'fade-in'}`}>
+
+        {/* Question card */}
         <div className="question-card">
           <div className="question-number">Question {currentIdx + 1}</div>
           <p className="question-text">{question?.text}</p>
         </div>
 
-        {/* Options as toggles */}
+        {/* Options */}
         <div className="options-list">
           {question?.options.map((opt, idx) => {
             const state = getOptionState(idx)
@@ -136,28 +217,33 @@ export default function QuizPage({ questions, mode, onFinish, onQuit }) {
               >
                 <span className="option-label">{OPTION_LABELS[idx]}</span>
                 <span className="option-text">{opt}</span>
-                {state === 'correct' && <span className="option-icon">✓</span>}
-                {state === 'wrong' && <span className="option-icon">✗</span>}
-                {state === 'selected' && <span className="option-icon">●</span>}
+                {state === 'correct'  && <span className="option-icon">✓</span>}
+                {state === 'wrong'    && <span className="option-icon">✗</span>}
+                {state === 'selected' && <span className="option-icon">·</span>}
               </button>
             )
           })}
         </div>
 
-        {/* Immediate-mode explanation */}
+        {/* Immediate-mode feedback banner */}
         {isImmediate && revealed && (
-          <div className={`feedback-banner ${isCorrect(question.id, chosenIndex) ? 'feedback--correct' : 'feedback--wrong'}`}>
+          <div
+            className={`feedback-banner ${
+              isCorrect(question.id, chosenIndex) ? 'feedback--correct' : 'feedback--wrong'
+            }`}
+          >
             {isCorrect(question.id, chosenIndex)
-              ? '✓ Correct! Well done.'
-              : `✗ Wrong. The correct answer is ${OPTION_LABELS[correctIndex]}: ${question.options[correctIndex]}`}
+              ? `✓  Correct.`
+              : `✗  Wrong. Correct answer: ${OPTION_LABELS[correctIndex]} — ${question.options[correctIndex]}`}
           </div>
         )}
+
       </main>
 
-      {/* Footer nav */}
+      {/* ── Footer nav ─────────────────────────────────────────── */}
       <footer className="quiz-footer">
         <button
-          className="btn-ghost btn-nav"
+          className="btn-nav"
           onClick={handlePrev}
           disabled={currentIdx === 0}
         >
@@ -165,27 +251,19 @@ export default function QuizPage({ questions, mode, onFinish, onQuit }) {
         </button>
 
         {isLastQuestion ? (
-          <button
-            className="btn-primary btn-finish"
-            onClick={handleNext}
-          >
-            Finish Test →
+          <button className="btn-finish" onClick={handleNext}>
+            Submit →
           </button>
         ) : (
-          <button
-            className="btn-primary btn-nav-next"
-            onClick={handleNext}
-          >
-            {isImmediate && !revealed && hasChosen
-              ? 'Next →'
-              : !isImmediate
-              ? 'Next →'
-              : revealed
-              ? 'Next →'
-              : 'Select an answer'}
+          <button className="btn-nav-next" onClick={handleNext}>
+            {isImmediate && !revealed && hasChosen ? 'Next →'
+              : !isImmediate ? 'Next →'
+              : revealed ? 'Next →'
+              : 'Next →'}
           </button>
         )}
       </footer>
+
     </div>
   )
 }
