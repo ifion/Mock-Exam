@@ -1,6 +1,6 @@
 // QuizPage.jsx
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { getCorrectIndex, isCorrect } from '../utils/quizLogic.js'
+import { getCorrectIndex, isCorrect, GRADE_LEVELS } from '../utils/quizLogic.js'
 import { saveCurrentSession } from '../utils/storage.js'
 
 const OPTION_LABELS = ['A', 'B', 'C', 'D']
@@ -20,7 +20,17 @@ function timerClass(secs) {
   return 'quiz-timer'
 }
 
-export default function QuizPage({ questions, mode, onFinish, onQuit }) {
+/** Map a question ID to its section short-name */
+function getSectionTag(id) {
+  if (id >= 1   && id <= 50)  return 'PSR'
+  if (id >= 51  && id <= 200) return 'GEN'
+  if (id >= 201 && id <= 350) return 'FR'
+  if (id >= 351 && id <= 400) return 'ENG'
+  if (id >= 401 && id <= 450) return 'MATH'
+  return ''
+}
+
+export default function QuizPage({ questions, mode, gradeLevelId, onFinish, onQuit }) {
   const [currentIdx, setCurrentIdx]   = useState(0)
   const [userAnswers, setUserAnswers] = useState({})
   const [revealed, setRevealed]       = useState(false)
@@ -38,6 +48,9 @@ export default function QuizPage({ questions, mode, onFinish, onQuit }) {
   const hasChosen    = chosenIndex !== undefined
   const correctIndex = getCorrectIndex(question?.id)
   const isImmediate  = mode === 'immediate'
+
+  // Grade level display label
+  const gradeLabel = GRADE_LEVELS.find(g => g.id === gradeLevelId)?.label ?? ''
 
   // ── Countdown timer ────────────────────────────────────────────
   useEffect(() => {
@@ -66,8 +79,8 @@ export default function QuizPage({ questions, mode, onFinish, onQuit }) {
 
   // ── Persist session ────────────────────────────────────────────
   useEffect(() => {
-    saveCurrentSession({ currentIdx, userAnswers, mode })
-  }, [currentIdx, userAnswers, mode])
+    saveCurrentSession({ currentIdx, userAnswers, mode, gradeLevelId })
+  }, [currentIdx, userAnswers, mode, gradeLevelId])
 
   // ── Interaction handlers ───────────────────────────────────────
   const handleOptionClick = useCallback((optIndex) => {
@@ -127,8 +140,9 @@ export default function QuizPage({ questions, mode, onFinish, onQuit }) {
 
   const answeredCount  = Object.keys(userAnswers).length
   const isLastQuestion = currentIdx + 1 >= totalQ
+  const sectionTag     = getSectionTag(question?.id)
 
-  // ── Time-expired overlay (auto-dismisses via effect above) ─────
+  // ── Time-expired overlay ───────────────────────────────────────
   if (timeExpired) {
     return (
       <div className="quiz-page">
@@ -142,13 +156,7 @@ export default function QuizPage({ questions, mode, onFinish, onQuit }) {
               Calculating your results…
             </p>
             <div className="timeup-actions">
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: 'var(--text-xs)',
-                  color: 'var(--text-muted)',
-                }}
-              >
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>
                 Submitting…
               </span>
             </div>
@@ -187,12 +195,15 @@ export default function QuizPage({ questions, mode, onFinish, onQuit }) {
         </div>
       </header>
 
-      {/* ── Mode + answered strip ───────────────────────────────── */}
+      {/* ── Info strip: grade · mode · answered ────────────────── */}
       <div className="mode-badge-strip">
+        {gradeLabel && (
+          <span className="grade-badge-strip">{gradeLabel}</span>
+        )}
         <span className={`mode-badge ${isImmediate ? 'mode-badge--imm' : 'mode-badge--end'}`}>
           {isImmediate ? '⚡ Immediate' : '📋 End Results'}
         </span>
-        <span className="answered-badge">{answeredCount} answered</span>
+        <span className="answered-badge">{answeredCount}/{totalQ} answered</span>
       </div>
 
       {/* ── Main content ───────────────────────────────────────── */}
@@ -200,7 +211,12 @@ export default function QuizPage({ questions, mode, onFinish, onQuit }) {
 
         {/* Question card */}
         <div className="question-card">
-          <div className="question-number">Question {currentIdx + 1}</div>
+          <div className="question-number">
+            Question {currentIdx + 1}
+            {sectionTag && (
+              <span className="question-section-tag">{sectionTag}</span>
+            )}
+          </div>
           <p className="question-text">{question?.text}</p>
         </div>
 
@@ -256,10 +272,7 @@ export default function QuizPage({ questions, mode, onFinish, onQuit }) {
           </button>
         ) : (
           <button className="btn-nav-next" onClick={handleNext}>
-            {isImmediate && !revealed && hasChosen ? 'Next →'
-              : !isImmediate ? 'Next →'
-              : revealed ? 'Next →'
-              : 'Next →'}
+            Next →
           </button>
         )}
       </footer>

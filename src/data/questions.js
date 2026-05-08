@@ -1003,4 +1003,1098 @@ export const questions = [
     text: "Common Law forms part of Nigerian law by virtue of ___",
     options: ["Military decree", "Colonial heritage", "State edict", "Local government law"],
   },
+  // ─────────────────────────────────────────────────────────────────────────────
+// APPEND THESE ENTRIES TO THE `questions` ARRAY IN  src/data/questions.js
+// IDs 201-260  →  Financial Regulations (FR)
+// IDs 261-310  →  English Language
+// IDs 311-360  →  Mathematics
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ══════════════════════════════════════════════════════════════
+//  SECTION B — FINANCIAL REGULATIONS  (IDs 201 – 260)
+//  Source: Federal Government Financial Regulations, Revised 2009
+// ══════════════════════════════════════════════════════════════
+  {
+    id: 201,
+    text: "The Financial Regulations (Revised Edition) were last revised to January ___",
+    options: ["2000", "2005", "2009", "2015"],
+  },
+  {
+    id: 202,
+    text: "The principal Act that provides the legal basis for Financial Regulations is the ___",
+    options: [
+      "Finance (Control and Management) Act, Cap.144",
+      "Fiscal Responsibility Act",
+      "Public Procurement Act 2007",
+      "Companies and Allied Matters Act",
+    ],
+  },
+  {
+    id: 203,
+    text: "The Accountant-General of the Federation is the Head of the Federal Government Accounting Services and ___ under FR 106",
+    options: [
+      "The Minister of Finance",
+      "The Auditor-General",
+      "The Treasury",
+      "The Permanent Secretary, Finance",
+    ],
+  },
+  {
+    id: 204,
+    text: "Bank reconciliation statements must be prepared ___",
+    options: ["Daily", "Weekly", "Monthly", "Annually"],
+  },
+  {
+    id: 205,
+    text: "Overdrawing of bank accounts by government officers is ___",
+    options: [
+      "Allowed with ministerial approval",
+      "Not permitted",
+      "Allowed during emergencies",
+      "Permitted with Accountant-General's approval",
+    ],
+  },
+  {
+    id: 206,
+    text: "Under the Financial Regulations, post-dated cheques ___",
+    options: [
+      "Are acceptable with the Accounting Officer's authority",
+      "Must be endorsed before use",
+      "Are not to be accepted",
+      "Can be used only for overseas payments",
+    ],
+  },
+  {
+    id: 207,
+    text: "The use of green ink in government accounting records is ___",
+    options: [
+      "Required for audit-trail purposes",
+      "Strictly forbidden",
+      "Allowed for Accounting Officers only",
+      "Used for corrections and adjustments",
+    ],
+  },
+  {
+    id: 208,
+    text: "Bills of Exchange and Promissory Notes as payment to government are ___",
+    options: [
+      "Acceptable as payment from registered contractors",
+      "Not to be accepted",
+      "Accepted only for capital projects",
+      "Acceptable from foreign entities",
+    ],
+  },
+  {
+    id: 209,
+    text: "An imprest under Financial Regulations is best described as ___",
+    options: [
+      "A type of government revenue",
+      "A fixed cash advance to meet minor or incidental expenses",
+      "A form of bank account for government funds",
+      "A salary advance on first appointment",
+    ],
+  },
+  {
+    id: 210,
+    text: "The duty to inspect imprest accounts is vested in the ___",
+    options: [
+      "Minister of Finance",
+      "Revenue Collector",
+      "Accountant-General",
+      "Sub-Accounting Officer",
+    ],
+  },
+  {
+    id: 211,
+    text: "Annual Board of Survey for cash and stamps must be held ___",
+    options: ["Monthly", "Quarterly", "Annually", "Bi-annually"],
+  },
+  {
+    id: 212,
+    text: "Payment vouchers must be stamped ___ before they are processed",
+    options: ['"RECEIVED"', '"APPROVED"', '"PAID"', '"CERTIFIED"'],
+  },
+  {
+    id: 213,
+    text: "Under FR 1511, the officer responsible for keeping personal emolument records is the ___",
+    options: [
+      "Head of Service",
+      "Salaries Section",
+      "Accounting Officer",
+      "Internal Auditor",
+    ],
+  },
+  {
+    id: 214,
+    text: "Deductions from government revenue by a Revenue Collector are ___",
+    options: [
+      "Permitted with ministerial approval",
+      "Prohibited",
+      "Allowed for legitimate administrative costs",
+      "Permitted on a quarterly basis",
+    ],
+  },
+  {
+    id: 215,
+    text: "The Consolidated Revenue Fund issues are governed by Financial Regulations ___",
+    options: ["101–106", "302–306", "401–420", "601–632"],
+  },
+  {
+    id: 216,
+    text: "Which of the following is NOT a financial authority under the Federal Government Financial Regulations?",
+    options: [
+      "The 1999 Constitution",
+      "The Finance (Control and Management) Act",
+      "The Annual Appropriation Act",
+      "A company's annual report",
+    ],
+  },
+  {
+    id: 217,
+    text: "A Revenue Collector must pay all government collections ___",
+    options: [
+      "To the Permanent Secretary",
+      "To the bank",
+      "To the Minister of Finance directly",
+      "To the Treasury Desk Officer",
+    ],
+  },
+  {
+    id: 218,
+    text: "The Auditor-General of the Federation has the right of access to ___ under FR 110",
+    options: [
+      "Only Federal Government payment vouchers",
+      "Bank accounts and books of accounts of government MDAs",
+      "Only internal audit reports",
+      "Revenue Collector's records only",
+    ],
+  },
+  {
+    id: 219,
+    text: "The Annual General Warrant for Recurrent Expenditure is covered under FR ___",
+    options: ["301", "302", "304", "306"],
+  },
+  {
+    id: 220,
+    text: "Virement in government budgeting refers to ___",
+    options: [
+      "Transfer of approved funds between sub-heads",
+      "A type of government revenue collection",
+      "Payment of salaries to overseas staff",
+      "Retirement of imprest accounts",
+    ],
+  },
+  {
+    id: 221,
+    text: "A payment voucher must contain a certificate that payment is in accordance with ___",
+    options: [
+      "Annual budget estimates",
+      "The approval of the Minister",
+      "The relevant contract terms",
+      "An internal audit report",
+    ],
+  },
+  {
+    id: 222,
+    text: "The Internal Audit policy in government MDAs is governed by Financial Regulation Chapter ___",
+    options: ["15", "16", "17", "18"],
+  },
+  {
+    id: 223,
+    text: "Under FR 1702, the appointment of an Internal Auditor in a Federal Ministry is the responsibility of the ___",
+    options: [
+      "Minister",
+      "Permanent Secretary",
+      "Accountant-General",
+      "Auditor-General",
+    ],
+  },
+  {
+    id: 224,
+    text: "Deposit accounts in government must be balanced ___",
+    options: ["Monthly", "Quarterly", "Annually", "Weekly"],
+  },
+  {
+    id: 225,
+    text: "Stores classification and general provisions in Financial Regulations are covered in Chapter ___",
+    options: ["15", "17", "19", "21"],
+  },
+  {
+    id: 226,
+    text: "Splitting of government contracts to avoid procurement thresholds is ___",
+    options: [
+      "Allowed for operational efficiency",
+      "An offence under Financial Regulations",
+      "Permitted with Accounting Officer's approval",
+      "A standard procurement method for small contracts",
+    ],
+  },
+  {
+    id: 227,
+    text: "The Stock Verification Unit is established and governed by FR ___",
+    options: ["2001", "2701", "2801", "2901"],
+  },
+  {
+    id: 228,
+    text: "Duty Tour Allowance (DTA) per diem is governed by FR ___",
+    options: ["1401", "1411", "1415", "1419"],
+  },
+  {
+    id: 229,
+    text: "Estacode allowance is paid to officers who travel ___",
+    options: [
+      "Within their state of posting",
+      "Outside Nigeria",
+      "Between states on official duty",
+      "To neighboring West African countries only",
+    ],
+  },
+  {
+    id: 230,
+    text: "A Local Purchase Order (LPO) in government stores acquisition is issued by the ___",
+    options: [
+      "Auditor-General",
+      "Officer Controlling Expenditure",
+      "Minister",
+      "Revenue Collector",
+    ],
+  },
+  {
+    id: 231,
+    text: "Non-response to audit queries is an offence under FR ___",
+    options: ["3001", "3101", "3115", "3201"],
+  },
+  {
+    id: 232,
+    text: "Payment to ghost workers is codified as an offence under FR ___",
+    options: ["3104", "3110", "3115", "3121"],
+  },
+  {
+    id: 233,
+    text: "Financial guidelines for the operation of Parastatals begin at FR ___",
+    options: ["3001", "3101", "3201", "3401"],
+  },
+  {
+    id: 234,
+    text: "A Last Pay Certificate is required when a public officer is ___",
+    options: ["Retiring", "Transferred", "Going on leave", "Promoted"],
+  },
+  {
+    id: 235,
+    text: "Loss of government revenue through negligence is covered under FR ___",
+    options: ["223", "229", "232", "215"],
+  },
+  {
+    id: 236,
+    text: "Unspent balance of an appropriation at the end of a financial year ___",
+    options: [
+      "Is automatically carried forward to the next year",
+      "Lapses and reverts to the Consolidated Revenue Fund",
+      "Is refunded directly to the Ministry of Finance",
+      "Is transferred to the Development Fund",
+    ],
+  },
+  {
+    id: 237,
+    text: "Payment vouchers must be prepared on ___",
+    options: [
+      "Any convenient paper available in the office",
+      "Officially prescribed Treasury forms",
+      "Stamped paper approved by the Auditor-General",
+      "Letterheaded Ministry paper",
+    ],
+  },
+  {
+    id: 238,
+    text: "Under FR 713, private money must be kept ___",
+    options: [
+      "In the same safe as government funds",
+      "Separate from government funds",
+      "With the Accounting Officer for safe custody",
+      "In the officer's personal bank account only",
+    ],
+  },
+  {
+    id: 239,
+    text: "A self-accounting unit's Accountant-in-Charge must be ___ under FR 1603",
+    options: [
+      "A chartered accountant",
+      "Treasury-trained",
+      "An internal auditor",
+      "A Senior Accounting Officer on GL 14",
+    ],
+  },
+  {
+    id: 240,
+    text: "Salary withholding in the civil service is governed by Financial Regulation ___",
+    options: ["1503", "1504", "1509", "1515"],
+  },
+  {
+    id: 241,
+    text: "The Paper Money Register is governed by FR ___",
+    options: ["210", "215", "223", "233"],
+  },
+  {
+    id: 242,
+    text: "An officer controlling expenditure who suspects fraud must ___",
+    options: [
+      "Ignore it unless he can prove it",
+      "Take immediate action as required by Financial Regulations",
+      "Report only to the Police and wait",
+      "Wait for the next audit exercise",
+    ],
+  },
+  {
+    id: 243,
+    text: "Under FR 315–316, virement of funds requires the approval of ___",
+    options: [
+      "The President",
+      "The Minister of Finance",
+      "The Accountant-General",
+      "The Auditor-General",
+    ],
+  },
+  {
+    id: 244,
+    text: "The Bureau for Public Procurement (BPP) is responsible for ___",
+    options: [
+      "Auditing government accounts",
+      "Overseeing and regulating public procurement",
+      "Collecting government revenue",
+      "Processing salary payments for civil servants",
+    ],
+  },
+  {
+    id: 245,
+    text: "Inflation of government contracts is an offence codified under FR ___",
+    options: ["3101", "3112", "3115", "3121"],
+  },
+  {
+    id: 246,
+    text: "Under the Financial Regulations, cheques drawn on banks outside Nigeria must be ___",
+    options: [
+      "Rejected outright",
+      "Collected through the proper banking channel as specified",
+      "Returned to the sender",
+      "Held pending ministerial approval",
+    ],
+  },
+  {
+    id: 247,
+    text: "The Financial Regulation that covers Pension Scheme accounting procedures is Chapter ___",
+    options: ["15", "17", "19", "21"],
+  },
+  {
+    id: 248,
+    text: "An Accounting Officer who suspects a loss of funds must initially ___",
+    options: [
+      "Write to the Auditor-General",
+      "Take action as prescribed in FR 2502",
+      "Wait for annual audit findings",
+      "Notify the Police and close the matter",
+    ],
+  },
+  {
+    id: 249,
+    text: "Non-retirement of imprests and advances is an offence under FR ___",
+    options: ["3115", "3118", "3121", "3124"],
+  },
+  {
+    id: 250,
+    text: "Poor cash management by a government officer is an offence under FR ___",
+    options: ["3101", "3110", "3115", "3121"],
+  },
+  {
+    id: 251,
+    text: "The Correspondence Advance Agreement in government service is governed by FR ___",
+    options: ["1401", "1410", "1415", "1419"],
+  },
+  {
+    id: 252,
+    text: "Irregular or wrong payments by a public officer are codified under FR ___",
+    options: ["3101", "3106", "3112", "3118"],
+  },
+  {
+    id: 253,
+    text: "Board of Survey for stores is constituted under FR ___",
+    options: ["2505", "2601", "2621", "2701"],
+  },
+  {
+    id: 254,
+    text: "The Financial Regulation that establishes the Vote Book system is covered under FR ___",
+    options: ["302", "402", "502", "602"],
+  },
+  {
+    id: 255,
+    text: "Non-recovery of an advance given to an officer is an offence under FR ___",
+    options: ["3106", "3110", "3118", "3122"],
+  },
+  {
+    id: 256,
+    text: "The financial authority responsible for issuing warrants for disbursement from the Consolidated Revenue Fund is the ___",
+    options: [
+      "President of Nigeria",
+      "Minister of Finance",
+      "Accountant-General of the Federation",
+      "Auditor-General for the Federation",
+    ],
+  },
+  {
+    id: 257,
+    text: "Under FR 1801, surprise Boards of Survey of cash and stamps may be held ___",
+    options: [
+      "At any time as directed by the Accountant-General",
+      "Only during external audit",
+      "Once every two years",
+      "Only when a loss is reported",
+    ],
+  },
+  {
+    id: 258,
+    text: "Failure to prepare bank reconciliation statements is an offence under FR ___",
+    options: ["3101", "3115", "3121", "3123"],
+  },
+  {
+    id: 259,
+    text: "Abandonment of arrears of revenue requires approval under FR ___",
+    options: ["211", "221", "231", "241"],
+  },
+  {
+    id: 260,
+    text: "Payments for jobs not executed are classified as an offence under FR ___",
+    options: ["3101", "3104", "3110", "3115"],
+  },
+
+// ══════════════════════════════════════════════════════════════
+//  SECTION C — ENGLISH LANGUAGE  (IDs 261 – 310)
+// ══════════════════════════════════════════════════════════════
+  {
+    id: 261,
+    text: "Choose the word that best completes: 'The minister ___ the meeting yesterday.'",
+    options: ["attend", "attends", "attended", "attending"],
+  },
+  {
+    id: 262,
+    text: "Which of the following is correctly spelt?",
+    options: ["Accomodation", "Accommodation", "Acommodation", "Accommodasion"],
+  },
+  {
+    id: 263,
+    text: "The plural of 'phenomenon' is ___",
+    options: ["Phenomenons", "Phenomena", "Phenomenas", "Phenomenies"],
+  },
+  {
+    id: 264,
+    text: "Choose the grammatically correct sentence:",
+    options: [
+      "Each of the officers have submitted their report",
+      "Each of the officers has submitted their report",
+      "Each of the officers has submitted his report",
+      "Each of the officers have submitted his report",
+    ],
+  },
+  {
+    id: 265,
+    text: "The word 'verbose' means ___",
+    options: [
+      "Brief and to the point",
+      "Using more words than necessary",
+      "Written in verse form",
+      "Spoken in a quiet tone",
+    ],
+  },
+  {
+    id: 266,
+    text: "The antonym of 'transparent' is ___",
+    options: ["Clear", "Obvious", "Opaque", "Lucid"],
+  },
+  {
+    id: 267,
+    text: "'The committee decided to defer the matter.' The word 'defer' means ___",
+    options: ["Dismiss", "Decide immediately", "Postpone to a later time", "Debate extensively"],
+  },
+  {
+    id: 268,
+    text: "Select the sentence with correct subject-verb agreement:",
+    options: [
+      "The group of officers are meeting today",
+      "The group of officers is meeting today",
+      "The group of officers were meeting today",
+      "The group of officers be meeting today",
+    ],
+  },
+  {
+    id: 269,
+    text: "The passive voice of 'The officer signed the letter' is ___",
+    options: [
+      "The letter signed by the officer",
+      "The letter was signed by the officer",
+      "The letter is signing by the officer",
+      "The officer has signed the letter",
+    ],
+  },
+  {
+    id: 270,
+    text: "A synonym for 'diligent' is ___",
+    options: ["Lazy", "Careless", "Hardworking", "Reckless"],
+  },
+  {
+    id: 271,
+    text: "Choose the correct preposition: 'The memo was addressed ___ the Permanent Secretary.'",
+    options: ["for", "at", "to", "of"],
+  },
+  {
+    id: 272,
+    text: "Identify the adverb in the sentence: 'She submitted the report promptly.'",
+    options: ["She", "submitted", "report", "promptly"],
+  },
+  {
+    id: 273,
+    text: "'Sine die' in official communication means ___",
+    options: [
+      "Without a fixed date for resumption",
+      "With immediate effect",
+      "Subject to further review",
+      "Under consideration by management",
+    ],
+  },
+  {
+    id: 274,
+    text: "The word 'emolument' refers to ___",
+    options: [
+      "Official salary and benefits of a position",
+      "Office equipment and stationery",
+      "Government official documents",
+      "A specific type of allowance only",
+    ],
+  },
+  {
+    id: 275,
+    text: "The word 'quorum' means ___",
+    options: [
+      "The full membership of a committee",
+      "The minimum number of members required for a valid meeting",
+      "A type of government standing order",
+      "The agenda for a formal meeting",
+    ],
+  },
+  {
+    id: 276,
+    text: "Which of the following words has a prefix meaning 'against'?",
+    options: ["Transport", "Antidote", "Forecast", "Submerge"],
+  },
+  {
+    id: 277,
+    text: "In official correspondence, 'CONFIDENTIAL' classification means the document is ___",
+    options: [
+      "Open to the general public",
+      "For restricted circulation within an MDA",
+      "To be destroyed after reading",
+      "Available to all government staff",
+    ],
+  },
+  {
+    id: 278,
+    text: "Which sentence uses a semicolon correctly?",
+    options: [
+      "The report is ready; however, it needs approval",
+      "The report is ready; but it needs approval",
+      "The report; is ready however it needs approval",
+      "The report is; ready, it needs approval",
+    ],
+  },
+  {
+    id: 279,
+    text: "'Per capita' means ___",
+    options: ["Per year", "Per department", "Per person", "Per transaction"],
+  },
+  {
+    id: 280,
+    text: "'To err is human; ___ is divine.' The missing word is:",
+    options: ["to forgive", "forgiving", "forgiveness", "to forgave"],
+  },
+  {
+    id: 281,
+    text: "Which of the following is an example of a compound sentence?",
+    options: [
+      "The officer submitted the report and the supervisor approved it",
+      "Although the officer was late, the report was submitted",
+      "The officer who was late submitted the report",
+      "Submitting the report on time is important",
+    ],
+  },
+  {
+    id: 282,
+    text: "The antonym of 'punctual' is ___",
+    options: ["Timely", "Prompt", "Tardy", "Efficient"],
+  },
+  {
+    id: 283,
+    text: "'Abridged' means ___",
+    options: ["Extended", "Shortened", "Translated", "Revised"],
+  },
+  {
+    id: 284,
+    text: "The word 'insubordination' means ___",
+    options: [
+      "Excellent work performance",
+      "Deliberate failure to obey a superior's lawful orders",
+      "Unauthorized absence from duty",
+      "Failure to work overtime when required",
+    ],
+  },
+  {
+    id: 285,
+    text: "Which of these is an example of indirect speech?",
+    options: [
+      "The officer said, 'I will submit the report.'",
+      "The officer said that he would submit the report",
+      "'Submit the report,' said the officer",
+      "The officer: 'I will submit the report'",
+    ],
+  },
+  {
+    id: 286,
+    text: "The word 'subsequent' means ___",
+    options: ["Before the event", "Of great importance", "Coming after in time or order", "Irrelevant"],
+  },
+  {
+    id: 287,
+    text: "'Status quo' means ___",
+    options: [
+      "A new government policy directive",
+      "The existing state of affairs",
+      "A formal written request",
+      "An official standing order",
+    ],
+  },
+  {
+    id: 288,
+    text: "Which of the following correctly identifies an abstract noun?",
+    options: ["Officer", "Lagos", "Honesty", "Table"],
+  },
+  {
+    id: 289,
+    text: "Choose the sentence that uses 'affect' correctly:",
+    options: [
+      "The new policy will affect all civil servants",
+      "The new policy will effect all civil servants",
+      "The new policy will has affect all civil servants",
+      "The new policy was effected on all civil servants",
+    ],
+  },
+  {
+    id: 290,
+    text: "'Mandatory' means ___",
+    options: ["Optional", "Temporary", "Compulsory", "Recommended"],
+  },
+  {
+    id: 291,
+    text: "The word 'correspondence' in government service refers to ___",
+    options: [
+      "A type of casual leave",
+      "Written communications exchanged between parties",
+      "A government gazette publication",
+      "An official rubber stamp",
+    ],
+  },
+  {
+    id: 292,
+    text: "'Verbatim' means ___",
+    options: ["In writing only", "Word for word", "In official formal language", "Translated into another language"],
+  },
+  {
+    id: 293,
+    text: "Which word best completes: 'The circular was issued ___ immediate effect'?",
+    options: ["from", "to", "with", "for"],
+  },
+  {
+    id: 294,
+    text: "'Exigency' in official usage means ___",
+    options: [
+      "A formal written request to a superior",
+      "An urgent situation requiring immediate action",
+      "A routine administrative procedure",
+      "A scheduled management meeting",
+    ],
+  },
+  {
+    id: 295,
+    text: "'The minister ___ over the meeting.' Choose the correct word:",
+    options: ["resided", "presided", "presides", "preside"],
+  },
+  {
+    id: 296,
+    text: "Which of these correctly uses 'fewer' and 'less'?",
+    options: [
+      "There were less officers present today",
+      "There were fewer officers present today",
+      "There were fewer money in the account",
+      "There were less mistakes in the report",
+    ],
+  },
+  {
+    id: 297,
+    text: "Choose the word that does NOT belong in this group: Memorandum, Circular, Gazette, Increment",
+    options: ["Memorandum", "Circular", "Gazette", "Increment"],
+  },
+  {
+    id: 298,
+    text: "'He worked ___ a senior officer for five years.' Choose the correct preposition:",
+    options: ["like", "as", "than", "with"],
+  },
+  {
+    id: 299,
+    text: "The correct plural of 'curriculum' is ___",
+    options: ["Curriculums", "Curricula", "Curriculaes", "Curriculum"],
+  },
+  {
+    id: 300,
+    text: "Which of these sentences uses the correct form of the verb 'lie/lay'?",
+    options: [
+      "The files were laying on the desk",
+      "The files were lying on the desk",
+      "The files were lied on the desk",
+      "The files were lain on the desk",
+    ],
+  },
+  {
+    id: 301,
+    text: "Which is the correctly capitalized form of this title?",
+    options: [
+      "the permanent secretary attended the meeting",
+      "The Permanent Secretary attended the meeting",
+      "the permanent secretary Attended the meeting",
+      "The permanent secretary Attended The Meeting",
+    ],
+  },
+  {
+    id: 302,
+    text: "'The officer tendered his ___ after the scandal.' The correct word is:",
+    options: ["Resignation", "Resignasion", "Resignnation", "Resigniation"],
+  },
+  {
+    id: 303,
+    text: "'Incognito' means ___",
+    options: [
+      "Well-known and highly regarded",
+      "Under a false name or identity to avoid recognition",
+      "Representing an official body",
+      "Carrying official government authority",
+    ],
+  },
+  {
+    id: 304,
+    text: "The word 'prudent' means ___",
+    options: ["Wasteful", "Careful and sensible in managing resources", "Aggressive", "Unwise"],
+  },
+  {
+    id: 305,
+    text: "'Notwithstanding' in legal or official documents means ___",
+    options: [
+      "In addition to",
+      "In spite of; despite",
+      "Subject to further review",
+      "On the condition that",
+    ],
+  },
+  {
+    id: 306,
+    text: "Identify the noun clause in: 'I know that the officer is diligent.'",
+    options: [
+      "I know",
+      "that the officer is diligent",
+      "the officer is",
+      "is diligent",
+    ],
+  },
+  {
+    id: 307,
+    text: "Which of the following sentences is grammatically correct?",
+    options: [
+      "Neither the director nor his deputies was present",
+      "Neither the director nor his deputies were present",
+      "Neither the director nor his deputies is present",
+      "Neither the director or his deputies were present",
+    ],
+  },
+  {
+    id: 308,
+    text: "The word 'superfluous' means ___",
+    options: [
+      "Absolutely necessary",
+      "More than what is needed; unnecessary",
+      "Of superior quality",
+      "Extremely important",
+    ],
+  },
+  {
+    id: 309,
+    text: "Which sentence correctly uses the word 'principal'?",
+    options: [
+      "The principle concern of the MDA is accountability",
+      "The principal concern of the MDA is accountability",
+      "The principle concern of the MDA are accountability",
+      "The principal concern of the MDA are accountability",
+    ],
+  },
+  {
+    id: 310,
+    text: "'He was given a ___ warning before dismissal.' The correct word is:",
+    options: ["Verbal", "Verbel", "Verble", "Verbial"],
+  },
+
+// ══════════════════════════════════════════════════════════════
+//  SECTION D — MATHEMATICS  (IDs 311 – 360)
+// ══════════════════════════════════════════════════════════════
+  {
+    id: 311,
+    text: "What is 15% of 200?",
+    options: ["25", "30", "35", "40"],
+  },
+  {
+    id: 312,
+    text: "A civil servant earns ₦85,000 per month. What is his annual salary?",
+    options: ["₦960,000", "₦1,000,000", "₦1,020,000", "₦1,100,000"],
+  },
+  {
+    id: 313,
+    text: "Simplify: 3/4 + 1/2",
+    options: ["4/6", "5/4", "2/3", "1/6"],
+  },
+  {
+    id: 314,
+    text: "A file room contains 450 files. If 30% are old files, how many are new files?",
+    options: ["135", "270", "315", "180"],
+  },
+  {
+    id: 315,
+    text: "What is the simple interest on ₦50,000 at 10% per annum for 3 years?",
+    options: ["₦5,000", "₦10,000", "₦15,000", "₦20,000"],
+  },
+  {
+    id: 316,
+    text: "If x + 7 = 15, find x.",
+    options: ["6", "7", "8", "9"],
+  },
+  {
+    id: 317,
+    text: "Convert 0.75 to a percentage.",
+    options: ["7.5%", "75%", "750%", "0.75%"],
+  },
+  {
+    id: 318,
+    text: "A government store has 1,200 items. One-third were distributed. How many remain?",
+    options: ["400", "600", "800", "900"],
+  },
+  {
+    id: 319,
+    text: "What is the LCM of 6 and 8?",
+    options: ["16", "24", "48", "12"],
+  },
+  {
+    id: 320,
+    text: "If 5 officers share ₦75,000 equally, how much does each receive?",
+    options: ["₦12,000", "₦13,000", "₦15,000", "₦17,000"],
+  },
+  {
+    id: 321,
+    text: "A typist types 60 words per minute. How many words can she type in 45 minutes?",
+    options: ["2,200", "2,400", "2,700", "3,000"],
+  },
+  {
+    id: 322,
+    text: "What is 2/5 expressed as a decimal?",
+    options: ["0.2", "0.25", "0.4", "0.5"],
+  },
+  {
+    id: 323,
+    text: "If the price of an item increases from ₦800 to ₦1,000, what is the percentage increase?",
+    options: ["20%", "25%", "30%", "35%"],
+  },
+  {
+    id: 324,
+    text: "Simplify using BODMAS: 12 ÷ 3 + 4 × 2",
+    options: ["10", "12", "14", "16"],
+  },
+  {
+    id: 325,
+    text: "A civil servant saves ₦5,000 every month. How much will she save in 2 years?",
+    options: ["₦60,000", "₦100,000", "₦120,000", "₦150,000"],
+  },
+  {
+    id: 326,
+    text: "What is the value of 3² + 4²?",
+    options: ["7", "25", "12", "49"],
+  },
+  {
+    id: 327,
+    text: "A meeting starts at 9:00 AM and ends at 12:30 PM. How long did the meeting last?",
+    options: ["2 hours 30 minutes", "3 hours", "3 hours 30 minutes", "4 hours"],
+  },
+  {
+    id: 328,
+    text: "If 3x = 18, find x.",
+    options: ["3", "4", "6", "9"],
+  },
+  {
+    id: 329,
+    text: "What is 40% of 500?",
+    options: ["150", "180", "200", "250"],
+  },
+  {
+    id: 330,
+    text: "Convert 3/8 to a percentage.",
+    options: ["37.5%", "38%", "33.3%", "40%"],
+  },
+  {
+    id: 331,
+    text: "A budget of ₦2,000,000 has been 60% utilized. How much remains?",
+    options: ["₦600,000", "₦800,000", "₦1,200,000", "₦1,400,000"],
+  },
+  {
+    id: 332,
+    text: "Find the average of: 45, 55, 60, 80, 10",
+    options: ["45", "50", "55", "60"],
+  },
+  {
+    id: 333,
+    text: "Express 125% as a fraction in its lowest terms.",
+    options: ["5/4", "4/3", "3/2", "6/5"],
+  },
+  {
+    id: 334,
+    text: "If a vehicle travels at 60 km/h, how far will it travel in 2 hours 30 minutes?",
+    options: ["120 km", "140 km", "150 km", "160 km"],
+  },
+  {
+    id: 335,
+    text: "A clerk files 120 documents in 4 hours. At this rate, how many can she file in 7 hours?",
+    options: ["180", "200", "210", "240"],
+  },
+  {
+    id: 336,
+    text: "What is the HCF of 24 and 36?",
+    options: ["6", "8", "12", "18"],
+  },
+  {
+    id: 337,
+    text: "A salary is increased by 20% from ₦60,000. What is the new salary?",
+    options: ["₦68,000", "₦72,000", "₦75,000", "₦80,000"],
+  },
+  {
+    id: 338,
+    text: "Solve: 2(x + 3) = 14",
+    options: ["2", "3", "4", "5"],
+  },
+  {
+    id: 339,
+    text: "What is 1/4 of 1/2?",
+    options: ["1/2", "1/4", "1/6", "1/8"],
+  },
+  {
+    id: 340,
+    text: "A tax of 7.5% is applied to ₦80,000. What is the tax amount?",
+    options: ["₦5,000", "₦6,000", "₦6,500", "₦7,500"],
+  },
+  {
+    id: 341,
+    text: "A worker earns ₦1,500 per day. How much does he earn in 22 working days?",
+    options: ["₦28,000", "₦30,000", "₦33,000", "₦35,000"],
+  },
+  {
+    id: 342,
+    text: "What is 1,000 − 365?",
+    options: ["625", "635", "645", "655"],
+  },
+  {
+    id: 343,
+    text: "If 12 pens cost ₦600, what is the cost of 5 pens?",
+    options: ["₦200", "₦250", "₦300", "₦350"],
+  },
+  {
+    id: 344,
+    text: "Simplify: (2/3) ÷ (4/9)",
+    options: ["3/2", "2/3", "4/6", "6/8"],
+  },
+  {
+    id: 345,
+    text: "The ratio of male to female staff in an office is 3:2. If there are 30 staff in total, how many are female?",
+    options: ["10", "12", "15", "18"],
+  },
+  {
+    id: 346,
+    text: "What is 5% of ₦400,000?",
+    options: ["₦10,000", "₦15,000", "₦20,000", "₦25,000"],
+  },
+  {
+    id: 347,
+    text: "An officer uses 2/5 of his 30 leave days in January. How many days does he use?",
+    options: ["10", "12", "14", "15"],
+  },
+  {
+    id: 348,
+    text: "What is the perimeter of a rectangular office 8 m long and 6 m wide?",
+    options: ["14 m", "28 m", "48 m", "56 m"],
+  },
+  {
+    id: 349,
+    text: "If x/5 = 4, what is x?",
+    options: ["15", "16", "20", "25"],
+  },
+  {
+    id: 350,
+    text: "A store had 500 items. 60 were damaged and 140 were distributed. How many remain?",
+    options: ["200", "250", "300", "350"],
+  },
+  {
+    id: 351,
+    text: "What is 17 × 23?",
+    options: ["381", "391", "401", "411"],
+  },
+  {
+    id: 352,
+    text: "Convert 45 minutes to a fraction of one hour.",
+    options: ["1/3", "3/4", "2/3", "1/2"],
+  },
+  {
+    id: 353,
+    text: "A government vehicle travels 240 km on 20 litres of fuel. What is its fuel efficiency?",
+    options: ["10 km/litre", "12 km/litre", "14 km/litre", "16 km/litre"],
+  },
+  {
+    id: 354,
+    text: "Total expenditure of ₦3,600,000 is split equally among 9 departments. How much does each get?",
+    options: ["₦300,000", "₦350,000", "₦400,000", "₦450,000"],
+  },
+  {
+    id: 355,
+    text: "Express 0.125 as a fraction.",
+    options: ["1/8", "1/4", "1/5", "1/6"],
+  },
+  {
+    id: 356,
+    text: "35 is what percentage of 140?",
+    options: ["20%", "25%", "30%", "35%"],
+  },
+  {
+    id: 357,
+    text: "A ladder has 20 rungs. An officer climbs 3/4 of the ladder. How many rungs has he climbed?",
+    options: ["12", "14", "15", "16"],
+  },
+  {
+    id: 358,
+    text: "What is √144?",
+    options: ["10", "11", "12", "14"],
+  },
+  {
+    id: 359,
+    text: "Simplify 48/72 to its lowest terms.",
+    options: ["2/3", "3/4", "4/6", "6/8"],
+  },
+  {
+    id: 360,
+    text: "If total revenue is ₦500,000 and total expenditure is ₦380,000, what is the surplus?",
+    options: ["₦100,000", "₦110,000", "₦120,000", "₦130,000"],
+  },
 ]

@@ -1,8 +1,9 @@
 // App.jsx — Root component with page routing
 import { useState, useEffect } from 'react'
-import HomePage from './pages/HomePage.jsx'
-import ModeSelect from './pages/ModeSelect.jsx'
-import QuizPage from './pages/QuizPage.jsx'
+import HomePage    from './pages/HomePage.jsx'
+import GradeSelect from './pages/GradeSelect.jsx'
+import ModeSelect  from './pages/ModeSelect.jsx'
+import QuizPage    from './pages/QuizPage.jsx'
 import ResultsPage from './pages/ResultsPage.jsx'
 import { getNextSessionIds, getQuestionsForIds, computeScore } from './utils/quizLogic.js'
 import {
@@ -12,35 +13,40 @@ import {
   saveCurrentSession,
 } from './utils/storage.js'
 
-// Pages: 'home' | 'mode' | 'quiz' | 'results'
+// Pages: 'home' | 'grade' | 'mode' | 'quiz' | 'results'
 export default function App() {
-  const [page, setPage] = useState('home')
-  const [mode, setMode] = useState(null)           // 'immediate' | 'end'
+  const [page, setPage]                   = useState('home')
+  const [gradeLevelId, setGradeLevelId]   = useState(null)  // selected grade level
+  const [mode, setMode]                   = useState(null)   // 'immediate' | 'end'
   const [sessionQuestions, setSessionQuestions] = useState([])
-  const [finalAnswers, setFinalAnswers] = useState(null)
-  const [score, setScore] = useState(null)
+  const [finalAnswers, setFinalAnswers]   = useState(null)
+  const [score, setScore]                 = useState(null)
 
   // Check for an in-progress session on mount
   useEffect(() => {
     const saved = getCurrentSession()
     if (saved && saved.questions && saved.questions.length > 0) {
-      // Offer to restore? For now just clear stale current session
-      // (restoration is handled inside QuizPage via saveCurrentSession)
+      // Restoration left to future work; clear stale session for now
     }
   }, [])
 
   // ── Navigation handlers ────────────────────────────────────────────────────
 
   function handleStartTest() {
+    setPage('grade')
+  }
+
+  function handleGradeSelect(selectedGrade) {
+    setGradeLevelId(selectedGrade)
     setPage('mode')
   }
 
   function handleModeSelect(selectedMode) {
-    const ids = getNextSessionIds()
-    const qs = getQuestionsForIds(ids)
+    const ids = getNextSessionIds(gradeLevelId)
+    const qs  = getQuestionsForIds(ids)
     setMode(selectedMode)
     setSessionQuestions(qs)
-    saveCurrentSession({ questions: qs, mode: selectedMode, currentIdx: 0, userAnswers: {} })
+    saveCurrentSession({ questions: qs, mode: selectedMode, gradeLevelId, currentIdx: 0, userAnswers: {} })
     setPage('quiz')
   }
 
@@ -49,10 +55,10 @@ export default function App() {
     setFinalAnswers(userAnswers)
     setScore(computed)
 
-    // Persist to history
     addSessionToHistory({
       date: new Date().toISOString(),
       mode,
+      gradeLevelId,
       score: computed,
       questionIds: sessionQuestions.map(q => q.id),
     })
@@ -67,7 +73,8 @@ export default function App() {
   }
 
   function handleRetake() {
-    setPage('mode')
+    // Return to grade selection so the user can change category if needed
+    setPage('grade')
   }
 
   function handleHome() {
@@ -82,10 +89,17 @@ export default function App() {
         <HomePage onStart={handleStartTest} />
       )}
 
+      {page === 'grade' && (
+        <GradeSelect
+          onSelect={handleGradeSelect}
+          onBack={() => setPage('home')}
+        />
+      )}
+
       {page === 'mode' && (
         <ModeSelect
           onSelect={handleModeSelect}
-          onBack={() => setPage('home')}
+          onBack={() => setPage('grade')}
         />
       )}
 
